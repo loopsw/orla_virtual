@@ -1,0 +1,79 @@
+<script>
+    /* Función redimensionar tamaño menu y contenedor */
+    function resizeContainer() {
+        var navbarHeight = $('#navbar1').height() + 1;
+        $('#container').
+        css('top', navbarHeight + 'px').
+        height($(window).height() - navbarHeight);
+    }
+    /* Función centrar ventanas modales */
+    function centerModal() {
+        $(this).css('display', 'block');
+        var $dialog = $(this).find(".modal-dialog");
+        var offset = ($(window).height() - $dialog.height()) / 2;
+        $dialog.css("margin-top", offset);
+    }
+    /* Función para ventana modal videos no activo */
+    function itemClick(e) {
+        var item = $(e.target);
+        item.css('opacity', '0.35');
+    
+        var id = item.attr('id');
+        if (!id) {
+            item = item.parent();
+            id = item.attr('id');
+        }
+    
+        var videoHTML = '<img src="http://placehold.it/608x468&text=' + id + '+Selected">';
+    
+        $('#modalVideoBody').html(videoHTML);
+    
+        $('#modalVideo').on('hidden.bs.modal', function (e) {
+            $('#modalVideoBody').html('');
+        });
+    
+        $('#modalVideo').modal('show');
+    }
+    
+    
+    function updateContainer(containerItems, prepend) {
+        prepend ? $('#container').prepend(containerItems) : $('#container').append(containerItems);
+        $('#container div').click(function (e) {
+            itemClick(e);
+        });
+    
+        $('#container div span').mouseenter(function () {
+            var $this = $(this);
+            if (this.offsetWidth < this.scrollWidth && !$this.attr('title')) {
+                $this.attr('title', $this.text());
+            }
+        });
+    }
+    
+    function getData() {
+        var newGridViewItems = "";
+        for (var i = 1; i < 0; i++) {if (window.CP.shouldStopExecution(0)) break;
+            newGridViewItems += createThumbnail("image_" + i);}window.CP.exitedLoop(0);
+        updateContainer(newGridViewItems, true);
+    }
+    
+    $(function () {
+    
+        // Redimensionar miniaturas contenedor
+        resizeContainer();
+    
+        // Centrar cuadros de dialogo ventanas modales
+        $('.modal').on('show.bs.modal', centerModal);
+    
+        // redimensional y centrar cuadros de dialogo
+        $(window).resize(function () {
+            resizeContainer();
+            $('.modal:visible').each(centerModal);
+        });
+    
+        // Buscar nuevos videos en servidor para colocarlos
+        getData();
+    
+    });
+     
+    </script>

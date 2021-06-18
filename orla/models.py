@@ -72,6 +72,7 @@ class Curso(models.Model):
     subtitulo = models.CharField(max_length=150)
     fecha_inicio = models.DateTimeField(auto_now=False)
     fecha_fin = models.DateTimeField(auto_now=False)
+    num_horas = models.IntegerField(null = False)
     logo = models.ImageField(null = True, upload_to='cursos/img')
     profesores = models.ManyToManyField(Profesor)
     alumnos = models.ManyToManyField(Alumno)
@@ -98,6 +99,7 @@ class Orla(models.Model):
         ('activo', 'Activo'),
         ('inactivo', 'Inactivo'), )
     codigo = models.IntegerField(null = False, unique = True)
+    #id = models.AutoField(primary_key=True)
     titulo = models.CharField(max_length=150)
     modelo = models.ImageField(null = True, upload_to='orla/modelos')
     curso = models.ForeignKey(Curso,on_delete=models.CASCADE)

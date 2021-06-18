@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    {% include 'head.html' %}
+
+
+
+</head>
+
+<body>
+    <!-- NAVBAR Y VENTANAS MODALES DE MENÚ-->
+    {% include 'menu.html' %} {% block content %}
+        
+    <style>
+        #container {
+            background-repeat: no-repeat;
+            //background: url("{% static 'img/clasico-azul.png' %}") no-repeat bottom center fixed;
+            {% for orla in orlas %}
+            background: url("{{ orla.modelo.url }}");
+            {% endfor %}
+            background-size: 99% 92%;
+        }
+    </style>
+
+    <!-- VENTANA MODAL PROFESOR -->
+    {% for profesor in profesores %}
+    <div class="modal" id="modal1{{ profesor.nombre }}" tabindex="-1" role="dialog" aria-labelledby="modalAboutLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Cerrar</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{ profesor.nombre }} {{ profesor.apellidos }}</h4>
+                </div>
+                <div class="modal-body">
+                    <img src="{{ profesor.imagen.url }}" style="float: left;" width="300"> {{profesor.descripcion}} <br>
+                    <center><img src="{% static 'img/logo_pixelblack.png' %}" height="60"></center>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <!-- VENTANA MODAL ALUMNOS -->
+    {% for alumno in alumnos %}
+    <div class="modal" id="modal2{{ alumno.nombre }}" tabindex="-1" role="dialog" aria-labelledby="modalAboutLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Cerrar</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{ alumno.nombre }} {{ alumno.apellidos }}</h4>
+                </div>
+                <div class="modal-body">
+                    <img src="{{ alumno.image.url }}" style="float: left;height:60;"> {{alumno.descripcion}} <br>
+                    <center><img src="{% static 'img/logo_pixelblack.png' %}" height="60"></center>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <!-- CONTENIDO DE LA ORLA: TITULOS Y PERSONAL-->
+    <div id="container">
+        {% include 'rotulos.html' %}
+
+        <!-- Video profesores -->
+        {% for profesor in profesores %}
+        <div id="Image_1">
+
+            <a href="#" data-toggle="modal" data-target="#modal1{{ profesor.nombre }}">
+                <video playsinline autoplay muted loop width="100%">
+                <source src="{{ profesor.video.url }}" type="video/mp4">
+                <source src="#" type="video/ogg">
+				Su navegador no soporta video html5
+			</video>
+                <!--a href="#" data-toggle="modal" data-target="#modal1{{ profesor.nombre }}"-->
+                <span>{{ profesor.nombre }} {{ profesor.apellidos }}</span>
+            </a>
+            <!--img src="{{ profesor.image.url }}" style="float: left;"-->
+        </div>
+        {% endfor %}
+
+        <br>
+        <!-- Vídeo Alumnos -->
+        {% for alumno in alumnos %}
+        <div id="Image_4">
+            <a href="#" data-toggle="modal" data-target="#modal2{{ alumno.nombre }}">
+                <video width="100%" autoplay loop>
+			<source src="{{ alumno.video.url }}" type="video/mp4">
+				Su navegador no soporta video html5
+			</video><span>{{ alumno.nombre }} {{ alumno.apellidos }} </span>
+            </a>
+        </div>
+        {% endfor %} {% endblock %}
+
+    </div>
+    <!-- FIN CONTENIDO DE LA ORLA -->
+
+    <!-- SCRIPTS FUNCIONES -->
+    {% include 'footer.html' %}
+
+</body>
+
+</html>

@@ -25,9 +25,9 @@ admin.site.register(Profesor,ProfesorAdmin)
 # Curso
 class CursoAdmin(admin.ModelAdmin):
     # Campos visibles a la hora de crear Alumno
-    fields = ('codigo','titulo','subtitulo','fecha_inicio','fecha_fin','logo','getImage','profesores','alumnos','estado','created','updated',)
+    fields = ('codigo','titulo','subtitulo','fecha_inicio','fecha_fin','num_horas','logo','getImage','profesores','alumnos','estado','created','updated',)
     # Campos que muestra en resumen
-    list_display= ('titulo','subtitulo','fecha_inicio','fecha_fin','getImage','estado','created','updated',)
+    list_display= ('titulo','subtitulo','fecha_inicio','fecha_fin','num_horas','getImage','estado','created','updated',)
     readonly_fields = ('getImage','created','updated',)
 admin.site.register(Curso,CursoAdmin)
 
