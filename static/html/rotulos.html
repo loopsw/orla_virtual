@@ -1,7 +1,5 @@
-{% for curso in curso %}
+
 		<!-- center><img src="{{ curso.logo }}" height="40"><center -->
-		<h1 style="margin-top: 100px">{{ curso.titulo }}</h1>
-		<h2>{{ curso.subtitulo }} </h2>	
-		<!--h2 style="margin-bottom: 40px">{{ curso.fecha_inicio|date:"M Y"  }} hasta {{ curso.fecha_fin|date:"M Y" }} ({{ curso.fecha_fin|timeuntil:curso.fecha_inicio}}, {{curso.num_horas}})</h2-->	
-		<h2 style="margin-bottom: 40px">{{ curso.fecha_inicio|date:"M Y"  }} a {{ curso.fecha_fin|date:"M Y" }} ( {{curso.num_horas}} Horas)</h2>	
-{% endfor %}
+		<h1 style="margin-top: 100px">{{ orla.curso.titulo }}</h1>
+		<h2>{{ orla.curso.subtitulo }} </h2>	
+		<h2 style="margin-bottom: 40px">{{ orla.curso.fecha_inicio|date:"M Y"  }} a {{ orla.curso.fecha_fin|date:"M Y" }} ( {{orla.curso.num_horas}} Horas)</h2>	

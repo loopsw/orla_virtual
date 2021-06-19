@@ -17,9 +17,9 @@
         #container {
             background-repeat: no-repeat;
             //background: url("{% static 'img/clasico-azul.png' %}") no-repeat bottom center fixed;
-            {% for orla in orlas %}
+            
             background: url("{{ orla.modelo.url }}");
-            {% endfor %}
+            
             background-size: 99% 92%;
         }
     </style>
