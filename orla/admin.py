@@ -9,7 +9,7 @@ class AlumnoAdmin(admin.ModelAdmin):
     # Campos visibles a la hora de crear Alumno
     fields = ('nombre','apellidos','descripcion','imagen','getImage','video','estado','created','updated',)
     # Campos que muestra en resumen
-    list_display= ('apellidos','nombre','getImage','estado','created','updated',)
+    list_display= ('apellidos','nombre','id','getImage','estado','created','updated',)
     readonly_fields = ('getImage','created','updated',)
 admin.site.register(Alumno,AlumnoAdmin)
 
@@ -18,7 +18,7 @@ class ProfesorAdmin(admin.ModelAdmin):
     # Campos visibles a la hora de crear Alumno
     fields = ('nombre','apellidos','profesion','descripcion','imagen','getImage','video','estado','created','updated',)
     # Campos que muestra en resumen
-    list_display= ('apellidos','nombre','getImage','profesion','estado','created','updated',)
+    list_display= ('apellidos','nombre','id','getImage','profesion','estado','created','updated',)
     readonly_fields = ('getImage','created','updated',)
 admin.site.register(Profesor,ProfesorAdmin)
 
@@ -27,7 +27,7 @@ class CursoAdmin(admin.ModelAdmin):
     # Campos visibles a la hora de crear Alumno
     fields = ('codigo','titulo','subtitulo','fecha_inicio','fecha_fin','num_horas','logo','getImage','profesores','alumnos','estado','created','updated',)
     # Campos que muestra en resumen
-    list_display= ('titulo','subtitulo','fecha_inicio','fecha_fin','num_horas','getImage','estado','created','updated',)
+    list_display= ('titulo','subtitulo','id','fecha_inicio','fecha_fin','num_horas','getImage','estado','created','updated',)
     readonly_fields = ('getImage','created','updated',)
 admin.site.register(Curso,CursoAdmin)
 

@@ -3,115 +3,117 @@
 <!-- Menú impresión -->
 <div class="modal" id="modalOptions" tabindex="-1" role="dialog" aria-labelledby="modalOptionsLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
               <span aria-hidden="true">×</span>
               <span class="sr-only">Cerrar</span>
           </button>
-          <h4 class="modal-title" id="myModalLabel">Opciones de Impresión</h4>
-        </div>
-        <div class="modal-body">		
-          <div class="radio">
-            <label>
+                <h4 class="modal-title" id="myModalLabel">Opciones de Impresión</h4>
+            </div>
+            <div class="modal-body">
+                <div class="radio">
+                    <label>
               <input name="optionsRadios" id="optionsRadios1" value="option1" checked="checked" type="radio">
               Imprimir en PDF
             </label>
-          </div>
-          <div class="radio">
-            <label>
+                </div>
+                <div class="radio">
+                    <label>
               <input name="optionsRadios" id="optionsRadios2" value="option2" type="radio">
               Imprimir en A4
             </label>
-          </div>
-          <div class="radio">
-            <label>
-              <input name="optionsRadios" id="optionsRadios3" value="option3" disabled="disabled" type="radio">
+                </div>
+                <div class="radio">
+                    <label>
+              <input name="optionsRadios" id="optionsRadios3" value="option3" type="radio">
               Imprimir en A3
             </label>
-          </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal" onclick="printDiv('#container')">Aceptar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
 
-  <!-- Menú Contacto -->
-  {% block content %}
-  <div class="modal" id="modalContact" tabindex="-1" role="dialog" aria-labelledby="modalContactLabel" aria-hidden="true">
+<!-- Menú Contacto -->
+{% block content %}
+<div class="modal" id="modalContact" tabindex="-1" role="dialog" aria-labelledby="modalContactLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Cerrar</span></button>
-          <h4 class="modal-title" id="myModalLabel">¿Desea ponerse en contacto con nosotros?</h4>
-        </div>
-        <div class="modal-body">
-          
-              <form class="form-horizontal" name="commentform" method="post" action=""></form>
-                  {% csrf_token %}
-                  <div class="form-group">
-                      <label class="control-label col-md-3" for="subject">Asunto</label>
-                      <div class="col-md-8">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Cerrar</span></button>
+                <h4 class="modal-title" id="myModalLabel">¿Desea ponerse en contacto con nosotros?</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" name="commentform" method="post" action="">
+                    {% csrf_token %}
+                    <div class="form-group">
                         {{ form.as_p }}
-                      </div>
-                  </div>
-        </div>
-        <div class="modal-footer">
-          <div class="form-actions">
-            <button type="submit" class="btn btn-default">Enviar</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-          </div>
-          
-        </div>
-      </form>
-      </div>
-    </div>
-  </div>
-  {% endblock %}
-  <!-- Menú Acerca de -->
-  <div class="modal" id="modalAbout" tabindex="-1" role="dialog" aria-labelledby="modalAboutLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Cerrar</span></button>
-          <h4 class="modal-title" id="myModalLabel">Acerca de nuestra Orla Digital</h4>
-        </div>
-        <div class="modal-body">
-        <strong>La Orla Digital</strong> es una aplicación Web realizada como Ejercicio Final del <strong>Certificado de Profesionalidad "Programación en Lenguajes Estructurados de Aplicaciones de Gestión"</strong>
-        impartido en La Unión de Junio de 2020 a Febrero de 2021 y de 700 horas de duración, impartido en el Centro Homologado del SEF de <br><center><img src="{% static 'images/plane.gif' %}" height="120"></center>
-        <p style="text-align: justify;">PROFESORES DEL CURSO: <strong>Salvador Alcaraz</strong> (documentación, herramientas y sotware; Principos y tipos de programación y Programación de aplicaciones web  con Django)
-          <strong>Jesús Sánchez</strong> (Bases de Datos, python para aplicaciones de escritorio e interfaces gráficas) y <strong>Antonio Guillamón</strong> (Bases de Datos y Python para domótica: arduino y PySerial). </p>
-      </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-   
-  <!-- FIN VENTANAS MODALES NAVBAR -->
+                    </div>
 
-  <!-- NAVBAR -->
-  <div id="navbar1" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                    <div class="modal-footer">
+                        <div class="form-actions">
+                            <a id="myWish" href="javascript:;">
+                                <button type="submit" class="btn btn-success">Enviar</button>
+                            </a>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+<!-- Menú Acerca de -->
+<div class="modal" id="modalAbout" tabindex="-1" role="dialog" aria-labelledby="modalAboutLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Cerrar</span></button>
+                <h4 class="modal-title" id="myModalLabel">Acerca de nuestra Orla Digital</h4>
+            </div>
+            <div class="modal-body">
+                <strong>La Orla Digital</strong> es una aplicación Web realizada como Ejercicio Final del <strong>Certificado de Profesionalidad "Programación con Lenguajes Orientados a Objetos y Bases de Datos Relacionales"</strong> impartido en La Unión
+                de Diciembre de 2020 a Junio de 2021 y de 710 horas de duración, impartido en el Centro Homologado del SEF de <br>
+                <center><img src="{% static 'img/plane.gif' %}" height="120"></center>
+                <p style="text-align: justify;">PROFESORES DEL CURSO: <strong>Salvador Alcaraz</strong> (documentación, herramientas y sotware; Principos y tipos de programación y Programación de aplicaciones web con Django)
+                    <strong>Jesús Sánchez</strong> (Bases de Datos, python para aplicaciones de escritorio e interfaces gráficas) y <strong>Francisco Apellidos</strong> (Linux, RAID, Hardware, etc.). <br> ALUMNO DESARROLLADOR: <strong>Jackson F. Reyes Bermeo</strong>                    (jackson.reyes@hotmail.com)
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FIN VENTANAS MODALES NAVBAR -->
+
+<!-- NAVBAR -->
+<div id="navbar1" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <span class="navbar-brand" style="color: #fff">PixelBlack</span>
-      </div>
-      <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-              <li><a href="#" data-toggle="modal" data-target="#modalOptions">Imprimir</a></li>
-              <li><a href="#" data-toggle="modal" data-target="#modalContact">Contacto</a></li>
-              <li><a href="#" data-toggle="modal" data-target="#modalAbout">Acerca de</a></li>
-          </ul>
-           
-      </div>
+            <span class="navbar-brand" style="color: #fff">PixelBlack</span>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#" data-toggle="modal" data-target="#modalOptions">Imprimir</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#modalContact">Contacto</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#modalAbout">Acerca de</a></li>
+            </ul>
+
+        </div>
     </div>
-  </div>  
+</div>

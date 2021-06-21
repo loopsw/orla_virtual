@@ -4,25 +4,23 @@
 
 <head>
     {% include 'head.html' %}
-
-
+    <style>
+        #container {
+            background-repeat: no-repeat;
+            //background: url("{% static 'img/clasico-azul.png' %}") no-repeat bottom center fixed;
+            background: url("{{ orla.modelo.url }}");
+            background-size: 99% 95%;
+            margin: 0 auto;
+            width: 100%;
+        }
+    </style>
 
 </head>
 
 <body>
     <!-- NAVBAR Y VENTANAS MODALES DE MENÚ-->
     {% include 'menu.html' %} {% block content %}
-        
-    <style>
-        #container {
-            background-repeat: no-repeat;
-            //background: url("{% static 'img/clasico-azul.png' %}") no-repeat bottom center fixed;
-            
-            background: url("{{ orla.modelo.url }}");
-            
-            background-size: 99% 92%;
-        }
-    </style>
+
 
     <!-- VENTANA MODAL PROFESOR -->
     {% for profesor in profesores %}
@@ -55,7 +53,7 @@
                     <h4 class="modal-title" id="myModalLabel">{{ alumno.nombre }} {{ alumno.apellidos }}</h4>
                 </div>
                 <div class="modal-body">
-                    <img src="{{ alumno.image.url }}" style="float: left;height:60;"> {{alumno.descripcion}} <br>
+                    <img src="{{ alumno.imagen.url }}" style="float: left;height:60;"> {{alumno.descripcion}} <br>
                     <center><img src="{% static 'img/logo_pixelblack.png' %}" height="60"></center>
 
                 </div>
@@ -68,14 +66,36 @@
     {% endfor %}
     <!-- CONTENIDO DE LA ORLA: TITULOS Y PERSONAL-->
     <div id="container">
-        {% include 'rotulos.html' %}
+        {% include 'rotulos.html' %} {% if status == 'correcto'%}
+        <div class="alert alert-success" id="success-alert">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            <strong>Correcto! </strong> el mensaje ha sido enviado correctamente.
+        </div>
+        <!--h5 class="correct_email">mensaje enviado correctamente</h5-->
+        {% endif %} {% if status == 'incorrecto'%}
+        <div class="alert alert-danger" id="danger-alert">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            <strong>Incorrecto! </strong> el mensaje no ha sido enviado, intente nuevamente.
+        </div>
+        <!--h2 class="incorrect_email">El mensaje no enviado, intentalo nuevamente.</h2-->
+        {% endif %}
+        <script type="text/javascript">
+            $(document).ready(function() {
 
+                window.setTimeout(function() {
+                    $(".alert").fadeTo(1000, 0).slideUp(1000, function() {
+                        $(this).remove();
+                    });
+                }, 4000);
+
+            });
+        </script>
         <!-- Video profesores -->
         {% for profesor in profesores %}
         <div id="Image_1">
 
             <a href="#" data-toggle="modal" data-target="#modal1{{ profesor.nombre }}">
-                <video playsinline autoplay muted loop width="100%">
+                <video playsinline autoplay muted loop width="100%" poster="{{ profesor.imagen.url }}">
                 <source src="{{ profesor.video.url }}" type="video/mp4">
                 <source src="#" type="video/ogg">
 				Su navegador no soporta video html5
@@ -92,15 +112,20 @@
         {% for alumno in alumnos %}
         <div id="Image_4">
             <a href="#" data-toggle="modal" data-target="#modal2{{ alumno.nombre }}">
-                <video width="100%" autoplay loop>
-			<source src="{{ alumno.video.url }}" type="video/mp4">
+                <video playsinline autoplay muted loop width="100%" poster="{{ alumno.imagen.url }}">
+			    <source src="{{ alumno.video.url }}" type="video/mp4">
+                <source src="#" type="video/ogg">
 				Su navegador no soporta video html5
-			</video><span>{{ alumno.nombre }} {{ alumno.apellidos }} </span>
+			    </video>
+                <span>{{ alumno.nombre }} {{ alumno.apellidos }} </span>
             </a>
         </div>
-        {% endfor %} {% endblock %}
+
+        {% endfor %}
+        <div class="margenInferior"></div> {% endblock %}
 
     </div>
+
     <!-- FIN CONTENIDO DE LA ORLA -->
 
     <!-- SCRIPTS FUNCIONES -->

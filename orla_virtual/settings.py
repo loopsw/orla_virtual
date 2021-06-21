@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'orla.apps.OrlaConfig',
+    'django_cleanup', # para eliminar las imagenes al eliminar un registro: pip install django-cleanup
 ]
 
 MIDDLEWARE = [
@@ -116,3 +117,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR , 'media')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Configuración de correo: pip install django-sendgrid-v5
+SENDGRID_SANDBOX_MODE_IN_DEBUG=False
+EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+SENDGRID_API_KEY = "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"

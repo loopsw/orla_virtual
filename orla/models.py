@@ -91,7 +91,7 @@ class Curso(models.Model):
     class Meta:   #Creamos la clase metadatos
         ordering = ('titulo',) #Ordena por fecha
     def __str__(self):  # función que devuelve el titulo
-        return self.titulo
+        return self.subtitulo
     
 # Modelo de los orla
 class Orla(models.Model):

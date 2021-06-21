@@ -1,3 +1,4 @@
+{% load static %}
 <script>
     /* Función redimensionar tamaño menu y contenedor */
     function resizeContainer() {
@@ -53,7 +54,8 @@
     function getData() {
         var newGridViewItems = "";
         for (var i = 1; i < 0; i++) {if (window.CP.shouldStopExecution(0)) break;
-            newGridViewItems += createThumbnail("image_" + i);}window.CP.exitedLoop(0);
+            newGridViewItems += createThumbnail("image_" + i);}
+            window.CP.exitedLoop(0);
         updateContainer(newGridViewItems, true);
     }
     
@@ -76,4 +78,34 @@
     
     });
      
+
+	function imprimirElemento(elemento) {
+	  var ficha = document.getElementById(elemento);
+	  var ventimp = window.open(' ', 'popimpr');
+	  ventimp.document.write( ficha.innerHTML );
+	  ventimp.document.close();
+	  ventimp.print( );
+	  ventimp.close();
+	}
+    function printDiv(elem)
+    {
+    renderMe($('<div/>').append($(elem).clone()).html());
+    }
+    function renderMe(data) {
+    var mywindow = window.open('', 'invoice-box', 'height=1000,width=1000');
+    mywindow.document.write('<html><head><title>Orla Virtual</title>');
+    mywindow.document.write('<link rel="stylesheet" href="{% static 'css/estilos.css' %}" type="text/css" />');
+    mywindow.document.write('</head><body >');
+    mywindow.document.write('<style> #container { background-repeat: no-repeat; background: url("{{ orla.modelo.url }}"); background-size: 99% 95%;margin: 0 auto;width: 100%;} </style>');
+    mywindow.document.write(data);
+    mywindow.document.write('</body></html>');
+
+    // retardo para que le de tiempo a renderizar el css
+    setTimeout(function () {
+    mywindow.print();
+    mywindow.close();
+    }, 4000)
+    return true;
+}
+
     </script>
