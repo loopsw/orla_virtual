@@ -121,4 +121,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Configuración de correo: pip install django-sendgrid-v5
 SENDGRID_SANDBOX_MODE_IN_DEBUG=False
 EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
-SENDGRID_API_KEY = "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"
+SENDGRID_API_KEY = "poner aquí la API KEY"
